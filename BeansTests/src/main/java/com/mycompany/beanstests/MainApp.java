@@ -13,16 +13,35 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author george
  */
 public class MainApp {
-     public static void main(String[] args) {
-      ApplicationContext context = new ClassPathXmlApplicationContext("/com/mycompany/beanstests/Beans.xml");
 
-      HelloWorld objA = (HelloWorld) context.getBean("helloWorld");
+    private static final String LINE = "-------------------------------";
 
-      objA.setMessage("I'm object A");
-      objA.getMessage();
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("/com/mycompany/beanstests/Beans.xml");
 
-      HelloWorld objB = (HelloWorld) context.getBean("helloWorld");
-      objB.getMessage();
-   }
-    
+        HelloWorld objA = (HelloWorld) context.getBean("helloWorld");
+        System.out.println(LINE);
+        objA.setMessage("I'm object A");
+        objA.getMessage();
+        objA.getName();
+        objA.getLast();
+        objA.setLast("Changed last");
+        System.out.println(LINE);
+        HelloWorld objB = (HelloWorld) context.getBean("helloWorld");
+        objB.getMessage();
+        objB.getName();
+        objB.getLast();
+        System.out.println(LINE);
+        HelloWorld protoA = (HelloWorld) context.getBean("helloWorldPrototype");
+        protoA.getMessage();
+        protoA.getName();
+        protoA.getLast();
+        System.out.println(LINE);
+        HelloWorld templateA = (HelloWorld) context.getBean("helloTemplate");
+        templateA.getMessage();
+        templateA.getName();
+        templateA.getLast();
+
+    }
+
 }

@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-   <bean id="helloWorld" class="com.mycompany.beanstests.HelloWorld" 
-      scope="singleton">
-   </bean>
+    <bean id="helloWorld" class="com.mycompany.beanstests.HelloWorld" 
+          scope="singleton">
+        <property name="name" value="George"/>
+        <property name="last" ref="last"/>
+        <property name="beanName" value="helloWorld"/>
+    </bean>
+   
+    <bean id="last" class="java.lang.String">
+        <constructor-arg value="My Last Name"/>
+    </bean>
+   
+    <bean id="helloWorldPrototype" class="com.mycompany.beanstests.HelloWorld" scope="prototype" init-method="init">
+        <property name="beanName" value="helloWorldPrototype"/>
 
+    </bean>
+
+    <bean class="com.mycompany.beanstests.InitHelloWorld" />
+    
+    <bean id="beanTeamplate" abstract="true">
+        <property name="name" value="beanTeamplate name"/>
+        <property name="last" value="beanTeamplate last name"/>
+    </bean>
+    
+    <bean id="helloTemplate" class="com.mycompany.beanstests.HelloWorld" parent="beanTeamplate">
+        <property name="message" value="Message for the template example"/>
+        <property name="beanName" value="helloTemplate"/>
+    </bean>
+    
 </beans>
