@@ -41,6 +41,8 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <excludeScope>system</excludeScope>
+                            <excludeGroupIds>junit</excludeGroupIds>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
